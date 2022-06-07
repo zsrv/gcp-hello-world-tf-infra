@@ -6,20 +6,21 @@ resource "github_repository" "app" {
   auto_init = true
 }
 
-resource "github_branch" "app_main" {
-  repository = github_repository.app.name
-  branch     = "main"
-}
+# Resource creation fails if the branch already exists...
+# resource "github_branch" "app_main" {
+#   repository = github_repository.app.name
+#   branch     = "main"
+# }
 
 resource "github_branch" "app_prod" {
   repository = github_repository.app.name
   branch     = "prod"
 }
 
-resource "github_branch_default" "app_default" {
-  repository = github_repository.app.name
-  branch     = github_branch.app_main.branch
-}
+# resource "github_branch_default" "app_default" {
+#   repository = github_repository.app.name
+#   branch     = github_branch.app_main.branch
+# }
 
 # Used in the application's Maven configuration (pom.xml) when building
 # and pushing the container image.
