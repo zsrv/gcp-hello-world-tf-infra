@@ -1,3 +1,9 @@
+variable "google_credentials" {
+  type        = string
+  description = "The Google service account key, in json format, that will be used by GitHub Actions"
+  sensitive   = true
+}
+
 variable "google_project_id" {
   type        = string
   description = "The Google Project ID to deploy to"

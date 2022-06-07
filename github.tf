@@ -22,6 +22,13 @@ resource "github_branch" "app_prod" {
 #   branch     = github_branch.app_main.branch
 # }
 
+# Used by GitHub Actions to push container images to Google Artifact Registry
+resource "github_actions_secret" "google_credentials" {
+  repository      = github_repository.app.name
+  secret_name     = "GOOGLE_CREDENTIALS"
+  plaintext_value = var.google_credentials
+}
+
 # Used in the application's Maven configuration (pom.xml) when building
 # and pushing the container image.
 # GitHub Actions will expose the secret as an environment variable
