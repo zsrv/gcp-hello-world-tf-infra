@@ -1,6 +1,9 @@
 resource "github_repository" "app" {
   name       = var.spring_application_name
   visibility = "private"
+
+  # If the repo is empty, github_branch resource creation will fail
+  auto_init = true
 }
 
 resource "github_branch" "app_main" {
